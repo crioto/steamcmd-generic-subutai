@@ -34,7 +34,7 @@
       "envName": {
           "description": "Enter name of the environment",
           "type": "string",
-          "default": "domain",
+          "default": "steam",
           "validation": "[a-zA-Z0-9]+"
       },
       "protocolName": {
@@ -53,7 +53,7 @@
         "description": "External port number",
         "type": "string",
         "default": "25017",
-        "validation": "[0-9+]"
+        "validation": "[0-9]+"
       }
     },
     "peer-criteria": [ 
