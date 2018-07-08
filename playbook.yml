@@ -1,0 +1,14 @@
+---
+
+- hosts: steamcmd
+  remote_user: root
+  tasks:
+  - name: Upgrading apt
+    apt:
+      update_cache: true
+      allow_unauthenticated: true
+      upgrade: true
+  - name: Installing steamcmd
+    apt:
+      name: steamcmd
+      state: present

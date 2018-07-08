@@ -1,0 +1,66 @@
+{
+    "name": "${envName}",
+    "description": "Subutai Blueprint for steamcmd",
+    "version": "1.0.0",
+    "author": "https://github.com/crioto",
+    "containers": [ {
+        "hostname": "steamcmd",
+        "template": "debian-stretch",
+        "peer-criteria": "HTTP-GROUP",
+        "size": "SMALL",
+        "port-mapping": [
+          {
+            "protocol": "${protocolName}",
+            "domain": "${envName}.envs.subutai.cloud",
+            "internal-port": "${internalPort}",
+            "external-port": "${externalPort}"
+          }
+        ]
+      }
+    ],
+    "ansible-configuration": {
+      "source-url": "https://github.com/crioto/steamcmd-generic-subutai/archive/master.zip",
+      "ansible-playbook": "playbook.yml",
+      "groups": [
+          {
+              "name": "steamcmd",
+              "hostnames": [
+                  "steamcmd"
+              ]
+          }
+      ]
+    },
+    "user-variables": {
+      "envName": {
+          "description": "Enter name of the environment",
+          "type": "string",
+          "default": "domain",
+          "validation": "[a-zA-Z0-9]+"
+      },
+      "protocolName": {
+        "description": "Enter name of the protocol",
+        "type": "enum",
+        "default": "udp",
+        "validation": "tcp,udp,http,https"
+      },
+      "internalPort": {
+        "description": "Internal port number",
+        "type": "string",
+        "default": "25017",
+        "validation": "[0-9]+"
+      },
+      "externalPort": {
+        "description": "External port number",
+        "type": "string",
+        "default": "25017",
+        "validation": "[0-9+]"
+      }
+    },
+    "peer-criteria": [ 
+      {
+        "name": "HTTP-GROUP",
+        "max-price": "25"
+      }
+    ]
+  }
+  
